@@ -1,0 +1,33 @@
+﻿@model Bookley.ViewModels.RandomBookViewModel
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*
+Decides if class is popular or nor.    
+*@
+
+
+@{
+    var className = Model.Customers.Count > 0 ? "popular" : null;
+
+}
+ 
+
+<h2 class="@className">@Model.Book.Title</h2>
+@if (Model.Customers.Count == 0)
+{
+    <p>No one has rented this book</p>
+}
+else
+{
+    <ul>
+        @foreach (var customer in Model.Customers)
+        {
+            <li>@customer.Name</li>
+        }
+    </ul>
+
+
+}
+
