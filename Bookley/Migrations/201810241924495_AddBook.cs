@@ -11,7 +11,7 @@ namespace Bookley.Migrations
                 "dbo.Books",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 255),
                         Author = c.String(),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),

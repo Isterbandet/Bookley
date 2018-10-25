@@ -254,6 +254,10 @@
     <Compile Include="Migrations\201810242002415_GetErrors.Designer.cs">
       <DependentUpon>201810242002415_GetErrors.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810251206403_NewFromStationary.cs" />
+    <Compile Include="Migrations\201810251206403_NewFromStationary.Designer.cs">
+      <DependentUpon>201810251206403_NewFromStationary.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
@@ -388,6 +392,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810242002415_GetErrors.resx">
       <DependentUpon>201810242002415_GetErrors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810251206403_NewFromStationary.resx">
+      <DependentUpon>201810251206403_NewFromStationary.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
