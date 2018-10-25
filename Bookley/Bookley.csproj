@@ -262,6 +262,10 @@
     <Compile Include="Migrations\201810252131271_NewFroms.Designer.cs">
       <DependentUpon>201810252131271_NewFroms.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810252141469_UppdateCustomer.cs" />
+    <Compile Include="Migrations\201810252141469_UppdateCustomer.Designer.cs">
+      <DependentUpon>201810252141469_UppdateCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
@@ -342,6 +346,7 @@
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Book\Details.cshtml" />
+    <Content Include="Views\Customers\CustomerForms.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -404,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810252131271_NewFroms.resx">
       <DependentUpon>201810252131271_NewFroms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810252141469_UppdateCustomer.resx">
+      <DependentUpon>201810252141469_UppdateCustomer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
