@@ -24,9 +24,42 @@ namespace Bookley.Controllers
 
         public ViewResult Index()
         {
-          var books = _context.Book.Include(m => m.Genre).ToList();
+            //var books = _context.Book.Include(m => m.GenreId).ToList();
+            var books = _context.Book.Include(m => m.Genre).ToList();
+            // return View(books);
+            //var books = _context.Book.ToList();
             return View(books);
         }
+
+        public ViewResult New()
+        {
+            var genres = _context.Genres.ToList();
+            var viewModel = new BookFormsViewModel
+            {
+                Genres = genres
+            };
+            return View("New", viewModel);
+
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var book = _context.Book.SingleOrDefault(c => c.Id == id);
+
+            if (book == null)
+                return HttpNotFound();
+
+            var viewModel = new BookFormsViewModel
+            {
+                Book = book,
+                Genres = _context.Genres.ToList()
+            };
+            return View("New", viewModel);
+        }
+
+
+
+
         public ActionResult Details(int id)
         {
             var book = _context.Book.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
@@ -35,20 +68,73 @@ namespace Bookley.Controllers
                 return HttpNotFound();
             return View(book);
         }
-            // GET: Movies/Random
-            public ActionResult Random()
+        [HttpPost]
+        public ActionResult Save(Book book)
+        {
+
+            if (book.Id == 0)
+            {
+                book.DateAdded = DateTime.Now;
+                book.Publish_date = DateTime.Now;
+                book.Publish_date = DateTime.Now;
+                book.Id = 7;
+                _context.Book.Add(book);
+            }
+            else
+            {
+                var bookInDb = _context.Book.Single(m => m.Id == book.Id);
+                bookInDb.Title = book.Title;
+                bookInDb.GenreId = book.GenreId;
+                bookInDb.NumberInStock = book.NumberInStock;
+                bookInDb.ReleaseDate = book.ReleaseDate;
+                bookInDb.Description = book.Description;
+
+                /*
+                
+                bookInDb.Title = book.Title;
+                bookInDb.Author = book.Author;
+                bookInDb.Description = book.Description;
+                bookInDb.Price = book.Price;
+                bookInDb.Genre = book.Genre;
+                bookInDb.NumberInStock = book.NumberInStock;
+                bookInDb.ReleaseDate = book.ReleaseDate;
+                bookInDb.DateAdded = book.DateAdded;
+                bookInDb.Publish_date = book.Publish_date;
+                */
+
+                //TryUpdateModel(bookInDb);
+
+            }
+
+            //book.Genre = new Genre { };
+
+            //_context.Book.Add(book);
+
+            _context.SaveChanges();
+
+
+
+            return RedirectToAction("Index", "Book");
+
+
+
+        }
+
+
+
+
+
+
+        // GET: Movies/Random
+        public ActionResult Random()
         {
             var movie = new Book() { Author = "Shrek!" };
-            var customers = new List<Customer>
-            {
-                new Customer { Name = "Customer 1" },
-                new Customer { Name = "Customer 2" }
-            };
+
 
             var viewModel = new RandomBookViewModel
             {
                 Book = movie,
-                Customers = customers
+
             };
 
             return View(viewModel);
