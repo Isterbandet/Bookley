@@ -77,7 +77,7 @@ namespace Bookley.Controllers
                 book.DateAdded = DateTime.Now;
                 book.Publish_date = DateTime.Now;
                 book.Publish_date = DateTime.Now;
-                book.Id = 7;
+                //book.Id = 7;
                 _context.Book.Add(book);
             }
             else

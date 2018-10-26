@@ -25,7 +25,7 @@
         {
             <tr>
                 <td>@Html.ActionLink(book.Title, "Edit", "Book", new { id = book.Id }, null)</td>
-                <td>@book.Author</td>
+                <td>@book.Genre.Name</td>
                 <td>@book.Description</td>
             </tr>
         }
