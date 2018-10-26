@@ -38,6 +38,7 @@ namespace Bookley.Controllers
         {
             if (customer.Id == 0)
             {
+                Console.WriteLine("Here!");
                 _context.Customers.Add(customer);
             }
             else
