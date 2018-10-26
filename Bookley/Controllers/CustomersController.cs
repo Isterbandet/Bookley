@@ -31,7 +31,7 @@ namespace Bookley.Controllers
                 MembershipTypes = membershipTypes
             };
 
-            return View("CustomerForms", viewModel);
+            return View("CustomerFroms", viewModel);
         }
         [HttpPost]
         public ActionResult Save(Customer customer)
