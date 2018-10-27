@@ -38,6 +38,7 @@ namespace Bookley.Controllers
             var genres = _context.Genres.ToList();
             var viewModel = new BookFormsViewModel
             {
+                Book = new Book(),
                 Genres = genres
             };
             return View("New", viewModel);
@@ -71,9 +72,22 @@ namespace Bookley.Controllers
                 return HttpNotFound();
             return View(book);
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Book book)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new BookFormsViewModel
+                {
+                    Book = book,
+                    Genres = _context.Genres.ToList()
+                };
+                return View("New", viewModel);
+            }
+
+
 
             if (book.Id == 0)
             {
