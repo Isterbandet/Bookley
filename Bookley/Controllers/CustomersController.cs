@@ -35,6 +35,7 @@ namespace Bookley.Controllers
             return View("CustomerFroms", viewModel);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             //Adding validation
