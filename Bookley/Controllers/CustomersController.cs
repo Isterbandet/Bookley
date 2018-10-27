@@ -28,6 +28,7 @@ namespace Bookley.Controllers
             var membershipTypes = _context.MembershipTypes.ToList();
             var viewModel = new NewCustomerViewModel
             {
+                Customer = new Customer(),
                 MembershipTypes = membershipTypes
             };
 
@@ -36,6 +37,19 @@ namespace Bookley.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
+            //Adding validation
+            //1.add data anotation on entitiys
+            //2.Modestlate.IsValis.
+            //3. add validation messanes
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new NewCustomerViewModel {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerFroms", viewModel);
+            }
+
             if (customer.Id == 0)
             {
                 Console.WriteLine("Here!");

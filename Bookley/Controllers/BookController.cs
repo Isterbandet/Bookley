@@ -31,6 +31,8 @@ namespace Bookley.Controllers
             return View(books);
         }
 
+
+
         public ViewResult New()
         {
             var genres = _context.Genres.ToList();
@@ -41,6 +43,7 @@ namespace Bookley.Controllers
             return View("New", viewModel);
 
         }
+
 
         public ActionResult Edit(int id)
         {
