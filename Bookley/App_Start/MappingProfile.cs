@@ -13,7 +13,15 @@ namespace Bookley.App_Start
         public MappingProfile()
         {
             Mapper.CreateMap<Customer, CustomerDto>();
-            Mapper.CreateMap<CustomerDto, Customer>();
+    
+
+            Mapper.CreateMap<Book, BookDto>();
+            // Dto to Domain
+            Mapper.CreateMap<CustomerDto, Customer>()
+                .ForMember(c => c.Id, opt => opt.Ignore());
+            Mapper.CreateMap<BookDto, Book>()
+               .ForMember(c => c.Id, opt => opt.Ignore());
+
         }
     }
 }
