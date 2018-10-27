@@ -25,28 +25,28 @@ namespace Bookley.Controllers.Api
             return _context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
         }
         //Get /api/customers
-        public CustomerDto GetCustomer(int id)
+        public IHttpActionResult GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
-                throw new HttpRequestException(HttpStatusCode.NotFound.ToString());
-            return Mapper.Map<Customer, CustomerDto>(customer);
+                return NotFound();
+            return  Ok(Mapper.Map<Customer, CustomerDto>(customer));
         }
 
 
         //Post /api/customers
         [HttpPost]
-        public CustomerDto CreateCustomer(CustomerDto customeDto) {
+        public IHttpActionResult CreateCustomer(CustomerDto customeDto) {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             var customer = Mapper.Map<CustomerDto, Customer>(customeDto);
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
             customeDto.Id = customer.Id;
-
-            return customeDto;
+            //Uri Unified Resource Identifier
+            return Created(new Uri(Request.RequestUri + "/" + customer.Id), customer);
         }
 
         // Put /api/customers/1
